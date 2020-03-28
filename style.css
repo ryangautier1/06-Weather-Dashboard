@@ -24,3 +24,56 @@ h1 {
     background-color: #f3f3f3;
     margin: 10px;
 }
+
+.city-stats {
+    min-height: 350px;
+    border: solid #ccc 1px;
+    overflow: auto;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+.forecast-header {
+    overflow: hidden;
+    text-align: left;
+    height: 40px;
+    margin: 0;
+}
+
+.city-5-day {
+    min-height: 190px;
+    margin: 10px;
+    overflow: auto;
+    display: flex;
+}
+
+.day {
+    background-color: #ed6a5e;
+    height: 190px;
+    float: left;
+    margin: 0;
+    min-width: 100px;
+    border-radius: 8px;
+}
+
+#one {
+    margin-right: 5px;    
+}
+
+.mid {
+    margin: 0 5px;
+}
+
+#five {
+    margin-left: 5px;
+}
+/* 
+@media screen and (max-width: 828px) {
+    section {
+        width: 90%;
+        margin: 32px auto;
+        position: relative;
+    }
+    #nav-name {
+        margin-left: 5%
+    } */
