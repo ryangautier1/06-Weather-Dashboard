@@ -1,0 +1,26 @@
+html {
+    background-color: #fff;
+    height: 100%;
+}
+
+header {
+    width: 100%;
+    background-color: #538083;
+    color: #fff;
+    padding: 7px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+.search-section {
+    float: left;
+    width: 400px;
+    min-height: 600px;
+    border-radius: 8px;
+    border: solid #ccc 1px;
+    background-color: #f3f3f3;
+    margin: 10px;
+}
