@@ -3,9 +3,13 @@ html {
     height: 100%;
 }
 
+body {
+    box-sizing: border-box;
+}
+
 header {
     width: 100%;
-    background-color: #538083;
+    background-color: #33658a;
     color: #fff;
     padding: 7px;
     text-align: center;
@@ -23,12 +27,25 @@ h1 {
     border: solid #ccc 1px;
     background-color: #f3f3f3;
     margin: 10px;
+    padding: 10px;
+}
+
+.btn {
+    color: #fff;
+    background-color: #f6ae2d;
+    border-color: #f6ae2d;
+}
+
+.btn-outline-secondary:hover {
+    color: #fff;
+    background-color: #f26419;
+    border-color: #f26419;
 }
 
 .city-stats {
     min-height: 350px;
     border: solid #ccc 1px;
-    overflow: auto;
+    overflow: hidden;
     border-radius: 8px;
     margin: 10px;
 }
@@ -43,16 +60,15 @@ h1 {
 .city-5-day {
     min-height: 190px;
     margin: 10px;
-    overflow: auto;
     display: flex;
 }
 
 .day {
-    background-color: #ed6a5e;
+    background-color: #758e4f;
     height: 190px;
     float: left;
     margin: 0;
-    min-width: 100px;
+    min-width: 125px;
     border-radius: 8px;
 }
 
@@ -67,13 +83,41 @@ h1 {
 #five {
     margin-left: 5px;
 }
-/* 
-@media screen and (max-width: 828px) {
-    section {
-        width: 90%;
-        margin: 32px auto;
-        position: relative;
+
+@media screen and (max-width: 1095px) {
+    .search-section {
+        min-height: 350px;
     }
-    #nav-name {
-        margin-left: 5%
-    } */
+    .forecast-header {
+        margin-left: 10px;
+    }
+}
+
+@media screen and (max-width: 685px) {
+    .search-section {
+        width: 100%;
+        margin: 10px 0;
+    }
+    .forecast-header {
+        text-align: center;
+    }
+    .city-5-day {
+        flex-direction: column;
+    }
+    .day {
+        height: 100px;
+        margin: 0;
+        width: 100%;
+    }
+    #one {
+        margin: 0 0 5px 0;    
+    }
+    
+    .mid {
+        margin: 5px 0;
+    }
+    
+    #five {
+        margin: 5px 0 0 0;
+    }
+}
