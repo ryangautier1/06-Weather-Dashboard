@@ -18,13 +18,8 @@ $("#search-btn").on("click", function (event) {
         url: currentQueryUrl,
         method: "GET"
     }).then(function (response) {
-        console.log(response);
-        cityName = response.city.name;
-        var day1data = response.list[4];
-        var day2data = response.list[12];
-        var day1data = response.list[20];
-        var day1data = response.list[28];
-        var day1data = response.list[36];
+        console.log(response);        
+      
 
     });
 
@@ -36,6 +31,32 @@ $("#search-btn").on("click", function (event) {
         console.log(response);
         cityName = response.city.name;
 
+          // get sky data for each day
+          var day1sky = response.list[4].weather[0].main;
+          var day2sky = response.list[12].weather[0].main;
+          var day3sky = response.list[20].weather[0].main;
+          var day4sky = response.list[28].weather[0].main;
+          var day5sky = response.list[36].weather[0].main;
+          console.log(day1sky);
+  
+          // get temp data for each day
+          var day1temp = response.list[4].main.temp;
+          var day2temp = response.list[12].main.temp;
+          var day3temp = response.list[20].main.temp;
+          var day4temp = response.list[28].main.temp;
+          var day5temp = response.list[36].main.temp;
+          console.log(day1temp);
+  
+          // get humidity data for each day
+          var day1humidity = response.list[4].main.humidity;
+          var day2humidity = response.list[12].main.humidity;
+          var day3humidity = response.list[20].main.humidity;
+          var day4humidity = response.list[28].main.humidity;
+          var day5humidity = response.list[36].main.humidity;
+          console.log(day1humidity);
+  
+          // // get date data for each day
+          
     });
 
     
