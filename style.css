@@ -84,6 +84,10 @@ h1 {
     margin-left: 5px;
 }
 
+.hidden {
+    display: none;
+}
+
 @media screen and (max-width: 1095px) {
     .search-section {
         min-height: 350px;

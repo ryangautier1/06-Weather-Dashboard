@@ -21,7 +21,7 @@
         <h2>Search for a City:</h2>
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="City" aria-label="City"
-                aria-describedby="button-addon2">
+                aria-describedby="button-addon2" id="city-input">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button" id="search-btn">Search</button>
             </div>
@@ -30,8 +30,8 @@
 
     <div class="city-stats"></div>
 
-    <h2 class="forecast-header">5 Day Forecast</h2>
-    <div class="city-5-day">
+    <h2 class="forecast-header hidden">5 Day Forecast</h2>
+    <div class="city-5-day hidden">
         <div class="day" id="one"></div>
         <div class="day mid" id="two"></div>
         <div class="day mid" id="three"></div>
