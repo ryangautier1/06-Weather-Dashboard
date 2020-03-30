@@ -8,11 +8,6 @@ $("#search-btn").on("click", function (event) {
     event.preventDefault;
     cityName = $("#city-input").val();
 
-    // Show 5 day forecast elements
-    $("#forecast-header").removeClass("hidden");
-    $("#city-5-day").removeClass("hidden");
-    $("#city-5-day").addClass("flex");
-
     // query url for current weather
     var currentQueryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + apiKey;
 
@@ -24,7 +19,9 @@ $("#search-btn").on("click", function (event) {
         url: currentQueryUrl,
         method: "GET"
     }).then(function (response) {
-        console.log(response);
+        // console.log(response);
+
+        var currentSky = response.weather[0].id;
 
 
     });
@@ -34,19 +31,20 @@ $("#search-btn").on("click", function (event) {
         url: forecastQueryUrl,
         method: "GET"
     }).then(function (response) {
-        console.log(response);
         cityName = response.city.name;
 
-        var sky;
-        var temp;
-        var humidity;
-        var date;
-
+        var sky = new Array();
+        var temp = new Array();
+        var humidity = new Array();
+        var date = new Array();
+        
+        // console.log(response);
+        
         for (var i = 0; i < 4; i++) {
 
             // get sky data for each day
             // (8*i + 4) will return the data from each day at noon
-            sky[i] = response.list[8 * i + 4].weather[0].main;
+            sky[i] = response.list[(8 * i) + 4].weather[0].id;
 
             // get temp data for each day
             temp[i] = response.list[8 * i + 4].main.temp;
