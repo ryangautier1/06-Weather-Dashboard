@@ -50,17 +50,16 @@ h1 {
     margin: 10px;
 }
 
-.forecast-header {
+#forecast-header {
     overflow: hidden;
     text-align: left;
     height: 40px;
     margin: 0;
 }
 
-.city-5-day {
+#city-5-day {
     min-height: 190px;
     margin: 10px;
-    display: flex;
 }
 
 .day {
@@ -88,12 +87,19 @@ h1 {
     display: none;
 }
 
+.flex {
+    display: flex;
+}
+
 @media screen and (max-width: 1095px) {
     .search-section {
         min-height: 350px;
     }
-    .forecast-header {
+    #forecast-header {
         margin-left: 10px;
+    }
+    .hidden {
+        display: none;
     }
 }
 
@@ -102,10 +108,10 @@ h1 {
         width: 100%;
         margin: 10px 0;
     }
-    .forecast-header {
+    #forecast-header {
         text-align: center;
     }
-    .city-5-day {
+    #city-5-day {
         flex-direction: column;
     }
     .day {
@@ -123,5 +129,8 @@ h1 {
     
     #five {
         margin: 5px 0 0 0;
+    }
+    .hidden {
+        display: none;
     }
 }

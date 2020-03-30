@@ -7,6 +7,12 @@ var cityName;
 $("#search-btn").on("click", function (event) {
     event.preventDefault;
     cityName = $("#city-input").val();
+
+    // Show 5 day forecast elements
+    $("#forecast-header").removeClass("hidden");
+    $("#city-5-day").removeClass("hidden");
+    $("#city-5-day").addClass("flex");
+
     // query url for current weather
     var currentQueryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + apiKey;
 
@@ -18,8 +24,8 @@ $("#search-btn").on("click", function (event) {
         url: currentQueryUrl,
         method: "GET"
     }).then(function (response) {
-        console.log(response);        
-      
+        console.log(response);
+
 
     });
 
@@ -31,33 +37,68 @@ $("#search-btn").on("click", function (event) {
         console.log(response);
         cityName = response.city.name;
 
-          // get sky data for each day
-          var day1sky = response.list[4].weather[0].main;
-          var day2sky = response.list[12].weather[0].main;
-          var day3sky = response.list[20].weather[0].main;
-          var day4sky = response.list[28].weather[0].main;
-          var day5sky = response.list[36].weather[0].main;
-          console.log(day1sky);
-  
-          // get temp data for each day
-          var day1temp = response.list[4].main.temp;
-          var day2temp = response.list[12].main.temp;
-          var day3temp = response.list[20].main.temp;
-          var day4temp = response.list[28].main.temp;
-          var day5temp = response.list[36].main.temp;
-          console.log(day1temp);
-  
-          // get humidity data for each day
-          var day1humidity = response.list[4].main.humidity;
-          var day2humidity = response.list[12].main.humidity;
-          var day3humidity = response.list[20].main.humidity;
-          var day4humidity = response.list[28].main.humidity;
-          var day5humidity = response.list[36].main.humidity;
-          console.log(day1humidity);
-  
-          // // get date data for each day
-          
+        var sky;
+        var temp;
+        var humidity;
+        var date;
+
+        for (var i = 0; i < 4; i++) {
+
+            // get sky data for each day
+            // (8*i + 4) will return the data from each day at noon
+            sky[i] = response.list[8 * i + 4].weather[0].main;
+
+            // get temp data for each day
+            temp[i] = response.list[8 * i + 4].main.temp;
+
+            // get humidity data for each day
+            humidity[i] = response.list[8 * i + 4].main.humidity;
+
+            // get date data for each day
+            date[i] = response.list[8 * i + 4].dt_txt;
+            date[i] = date[i][5] + date[i][6] + "/" + date[i][8] + date[i][9] + "/" + date[i][0] + date[i][1] + date[i][2] + date[i][3];
+        }
     });
 
-    
+
 });
+
+
+// // get sky data for each day
+// var day1sky = response.list[4].weather[0].main;
+// var day2sky = response.list[12].weather[0].main;
+// var day3sky = response.list[20].weather[0].main;
+// var day4sky = response.list[28].weather[0].main;
+// var day5sky = response.list[36].weather[0].main;
+
+// // get temp data for each day
+// var day1temp = response.list[4].main.temp;
+// var day2temp = response.list[12].main.temp;
+// var day3temp = response.list[20].main.temp;
+// var day4temp = response.list[28].main.temp;
+// var day5temp = response.list[36].main.temp;
+
+// // get humidity data for each day
+// var day1humidity = response.list[4].main.humidity;
+// var day2humidity = response.list[12].main.humidity;
+// var day3humidity = response.list[20].main.humidity;
+// var day4humidity = response.list[28].main.humidity;
+// var day5humidity = response.list[36].main.humidity;
+
+// // get date data for each day
+// var day1date = response.list[4].dt_txt;
+// day1date = day1date[5] + day1date[6] + "/" + day1date[8] + day1date[9] + "/" + day1date[0] + day1date[1] + day1date[2] + day1date[3];
+
+// var day1date = response.list[4].dt_txt;
+// day1date = day1date[5] + day1date[6] + "/" + day1date[8] + day1date[9] + "/" + day1date[0] + day1date[1] + day1date[2] + day1date[3];
+
+// var day1date = response.list[4].dt_txt;
+// day1date = day1date[5] + day1date[6] + "/" + day1date[8] + day1date[9] + "/" + day1date[0] + day1date[1] + day1date[2] + day1date[3];
+
+// var day1date = response.list[4].dt_txt;
+// day1date = day1date[5] + day1date[6] + "/" + day1date[8] + day1date[9] + "/" + day1date[0] + day1date[1] + day1date[2] + day1date[3];
+
+// var day1date = response.list[4].dt_txt;
+// day1date = day1date[5] + day1date[6] + "/" + day1date[8] + day1date[9] + "/" + day1date[0] + day1date[1] + day1date[2] + day1date[3];
+
+// console.log(day1date);
