@@ -2,7 +2,8 @@ var apiKey = "&appid=adb745e5a94210b177a3d627e6b9f105";
 
 var cityName;
 
-
+var lat;
+var lon;
 
 $("#search-btn").on("click", function (event) {
     event.preventDefault;
@@ -23,16 +24,33 @@ $("#search-btn").on("click", function (event) {
 
         // get current sky id
         var currentSky = response.weather[0].id;
-        
+
         // get current date
         var currentDate = moment().format('l');
-        
+
         // get current temp
         var currentTemp = response.main.temp;
         // Convert from kelvin to farenheit
         currentTemp = (currentTemp - 273.15) * (9 / 5) + 32 + " °F";
 
+        // get current humidity
+        var currentHumidity = response.main.humidity + "%";
 
+        // get current wind speed
+        var currentWind = response.wind.speed + " MPH";
+
+        // get coordinates
+        lat = response.coord.lat;
+        lon = response.coord.lon;
+
+        // call for UV index
+        uvQueryUrl = "http://api.openweathermap.org/data/2.5/uvi?appid=adb745e5a94210b177a3d627e6b9f105&lat=" + lat + "&lon=" + lon;
+        $.ajax({
+            url: uvQueryUrl,
+            method: "GET"
+        }).then(function (response) {
+            var uvValue = response.value;
+        });
     });
 
     // call for forecast
@@ -62,14 +80,13 @@ $("#search-btn").on("click", function (event) {
             temp[i] = (temp[i] - 273.15) * (9 / 5) + 32 + " °F";
 
             // get humidity data for each day
-            humidity[i] = response.list[8 * i + 4].main.humidity;
+            humidity[i] = response.list[8 * i + 4].main.humidity + "%";
 
             // get date data for each day
             date[i] = response.list[8 * i + 4].dt_txt;
             date[i] = date[i][5] + date[i][6] + "/" + date[i][8] + date[i][9] + "/" + date[i][0] + date[i][1] + date[i][2] + date[i][3];
         }
     });
-
 
 });
 
