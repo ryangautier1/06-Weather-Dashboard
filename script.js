@@ -5,6 +5,44 @@ var cityName;
 var lat;
 var lon;
 
+// get weather condition code for icon from https://openweathermap.org/weather-conditions
+function getSkyIcon(b) {
+    var a = b.toString();
+    if (a[0] == "2"){
+        return "11d";
+    }
+    else if (a[0] == "3") {
+        return "09d";
+    }
+    else if (a[0] == 5 && a[1] == 0) {
+        return "10d";
+    }
+    else if (a == 511 || a[0] == 6) {
+        return "13d";
+    }
+    else if (a[0] == 5 && a[1] == 2) {
+        return "09d";
+    }
+    else if (a == 531) {
+        return "09d";
+    }
+    else if (a[0] == 7) {
+        return "50d";
+    }
+    else if (a == 800) {
+        return "01d";
+    }
+    else if (a == 801) {
+        return "02d";
+    }
+    else if (a == 802) {
+        return "03d";
+    }
+    else if (a == 803 || a == 804) {
+        return "04d";
+    }
+}
+
 $("#search-btn").on("click", function (event) {
     event.preventDefault;
     cityName = $("#city-input").val();
@@ -24,6 +62,8 @@ $("#search-btn").on("click", function (event) {
 
         // get current sky id
         var currentSky = response.weather[0].id;
+        var iconCode = getSkyIcon(currentSky);
+    
 
         // get current date
         var currentDate = moment().format('l');
