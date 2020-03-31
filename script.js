@@ -11,6 +11,30 @@ function clearContents() {
     $("#current-sky-icon").attr("src","");
     $("#current-temp").text("");
     $("#current-humidity").text("");
+    $("#current-wind").text("");
+    $("#current-uv").text("");
+    $("#current-uv-value").removeClass();
+    $("#current-uv-value").text("");
+}
+
+// get UV class based on UV index
+function getUvClass(a) {
+    a = parseInt(a);
+    if (a < 3) {
+        return "very-low-uv";
+    }
+    else if (a < 5) {
+        return "low-uv";
+    }
+    else if (a < 7) {
+        return "moderate-uv";
+    }
+    else if (a < 10) {
+        return "high-uv";
+    }
+    else {
+        return "very-high-uv";
+    }
 }
 
 // get weather condition code for icon from https://openweathermap.org/weather-conditions
@@ -90,7 +114,8 @@ $("#search-btn").on("click", function (event) {
         $("#current-humidity").append("Humidity: " + currentHumidity + "%");
 
         // get current wind speed
-        var currentWind = response.wind.speed + " MPH";
+        var currentWind = response.wind.speed;
+        $("#current-wind").append("Wind Speed: " + currentWind + " MPH");
 
         // get coordinates
         lat = response.coord.lat;
@@ -103,6 +128,10 @@ $("#search-btn").on("click", function (event) {
             method: "GET"
         }).then(function (response) {
             var uvValue = response.value;
+            var uvClass = getUvClass(uvValue);
+            $("#current-uv-value").addClass(uvClass);
+            $("#current-uv").append("UV Index: ");
+            $("#current-uv-value").append(uvValue);
         });
     });
 

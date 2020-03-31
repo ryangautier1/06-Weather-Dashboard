@@ -67,9 +67,15 @@ h1 {
     margin-bottom: 10px;
 }
 
+#current-uv {
+    white-space: nowrap;
+    display: inline;
+}
+
 #current-uv-value {
     padding: 0 3px;
     color: white;
+    display: inline;
 }
 
 .very-low-uv {
