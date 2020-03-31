@@ -8,6 +8,9 @@ var lon;
 // clear all text
 function clearContents() {
     $("#current-city").text("");
+    $("#current-sky-icon").attr("src","");
+    $("#current-temp").text("");
+    $("#current-humidity").text("");
 }
 
 // get weather condition code for icon from https://openweathermap.org/weather-conditions
@@ -70,7 +73,6 @@ $("#search-btn").on("click", function (event) {
         var iconCode = getSkyIcon(currentSky);
         $("#current-sky-icon").attr("src","http://openweathermap.org/img/wn/" + iconCode + "@2x.png");
     
-
         // get current date
         var currentDate = moment().format('l');
         // add current date to heading of current city stats
@@ -79,10 +81,13 @@ $("#search-btn").on("click", function (event) {
         // get current temp
         var currentTemp = response.main.temp;
         // Convert from kelvin to farenheit
-        currentTemp = (currentTemp - 273.15) * (9 / 5) + 32 + " °F";
+        currentTemp = (currentTemp - 273.15) * (9 / 5) + 32;
+        currentTemp = Math.round(currentTemp);
+        $("#current-temp").append("Temperature: " + currentTemp + " °F");
 
         // get current humidity
-        var currentHumidity = response.main.humidity + "%";
+        var currentHumidity = response.main.humidity;
+        $("#current-humidity").append("Humidity: " + currentHumidity + "%");
 
         // get current wind speed
         var currentWind = response.wind.speed + " MPH";
