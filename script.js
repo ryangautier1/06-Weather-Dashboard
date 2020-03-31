@@ -1,6 +1,7 @@
 var apiKey = "&appid=adb745e5a94210b177a3d627e6b9f105";
 
 var cityName;
+var searchHistory = [];
 
 var lat;
 var lon;
@@ -17,6 +18,10 @@ function clearContents() {
     $("#current-uv-value").text("");
     $("forecast-header").addClass("hidden");
     $("city-5-day").addClass("hidden");
+    $(".forecast-date").text("");
+    $(".forecast-temp").text("");
+    $(".forecast-icon").attr("src","");
+    $(".forecast-humidity").text("");
 }
 
 // get UV class based on UV index
@@ -81,6 +86,17 @@ $("#search-btn").on("click", function (event) {
     event.preventDefault;
     clearContents();
     cityName = $("#city-input").val();
+
+    // store cityName in search history
+    // searchHistory = localStorage.getItem("searchHistory", JSON.stringify(searchHistory));
+    // if (searchHistory != []){
+
+    // }
+    searchHistory.unshift(cityName);
+    console.log(searchHistory);
+    // localStorage.setItem()
+    // var newBtn = $("<button>").text(cityName);
+
 
     // query url for current weather
     var currentQueryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + apiKey;
