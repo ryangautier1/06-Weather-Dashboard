@@ -51,9 +51,20 @@ h1 {
     padding: 15px;
 }
 
+#current-city{
+    white-space: nowrap;
+    display: inline;
+}
+
 .city-stats div{
     color: #555;
     margin: 15px 0;
+}
+
+#current-sky-icon {
+    display: inline;
+    height: 65px; 
+    margin-bottom: 10px;
 }
 
 #current-uv-value {

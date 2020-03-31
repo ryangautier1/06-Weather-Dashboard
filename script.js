@@ -5,6 +5,11 @@ var cityName;
 var lat;
 var lon;
 
+// clear all text
+function clearContents() {
+    $("#current-city").text("");
+}
+
 // get weather condition code for icon from https://openweathermap.org/weather-conditions
 function getSkyIcon(b) {
     var a = b.toString();
@@ -45,6 +50,7 @@ function getSkyIcon(b) {
 
 $("#search-btn").on("click", function (event) {
     event.preventDefault;
+    clearContents();
     cityName = $("#city-input").val();
 
     // query url for current weather
@@ -58,15 +64,17 @@ $("#search-btn").on("click", function (event) {
         url: currentQueryUrl,
         method: "GET"
     }).then(function (response) {
-        console.log(response);
 
         // get current sky id
         var currentSky = response.weather[0].id;
         var iconCode = getSkyIcon(currentSky);
+        $("#current-sky-icon").attr("src","http://openweathermap.org/img/wn/" + iconCode + "@2x.png");
     
 
         // get current date
         var currentDate = moment().format('l');
+        // add current date to heading of current city stats
+        $("#current-city").append(currentDate);
 
         // get current temp
         var currentTemp = response.main.temp;
@@ -98,7 +106,9 @@ $("#search-btn").on("click", function (event) {
         url: forecastQueryUrl,
         method: "GET"
     }).then(function (response) {
+        // Add city name to heading of current city stats
         cityName = response.city.name;
+        $("#current-city").prepend(cityName + " ");
 
         // initialize arrays
         var sky = new Array();
@@ -113,6 +123,7 @@ $("#search-btn").on("click", function (event) {
             // get sky data for each day
             // (8*i + 4) will return the data from each day at noon
             sky[i] = response.list[(8 * i) + 4].weather[0].id;
+            sky[i] = getSkyIcon(sky[i]);
 
             // get temp data for each day
             temp[i] = response.list[8 * i + 4].main.temp;
