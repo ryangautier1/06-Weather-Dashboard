@@ -57,11 +57,38 @@ h1 {
 }
 
 #current-uv-value {
+    padding: 0 3px;
+    color: white;
+}
+
+.very-low-uv {
+    border: solid 1px #00a2ff;
+    border-radius: 4px;
+    background-color: #00a2ff;
+}
+
+.low-uv {
+    border: solid 1px #00be00;
+    border-radius: 4px;
+    background-color: #00be00;
+}
+
+.moderate-uv {
+    border: solid 1px #c97200;
+    border-radius: 4px;
+    background-color: #c97200;
+}
+
+.high-uv {
     border: solid 1px red;
     border-radius: 4px;
     background-color: red;
-    padding: 0 3px;
-    color: white;
+}
+
+.very-high-uv {
+    border: solid 1px #ff00aa;
+    border-radius: 4px;
+    background-color: #ff00aa;
 }
 
 #forecast-header {
