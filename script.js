@@ -21,9 +21,16 @@ $("#search-btn").on("click", function (event) {
     }).then(function (response) {
         console.log(response);
 
+        // get current sky id
         var currentSky = response.weather[0].id;
+        
+        // get current date
         var currentDate = moment().format('l');
         
+        // get current temp
+        var currentTemp = response.main.temp;
+        // Convert from kelvin to farenheit
+        currentTemp = (currentTemp - 273.15) * (9 / 5) + 32 + " °F";
 
 
     });
@@ -35,13 +42,14 @@ $("#search-btn").on("click", function (event) {
     }).then(function (response) {
         cityName = response.city.name;
 
+        // initialize arrays
         var sky = new Array();
         var temp = new Array();
         var humidity = new Array();
         var date = new Array();
-        
+
         // console.log(response);
-        
+
         for (var i = 0; i < 4; i++) {
 
             // get sky data for each day
@@ -50,6 +58,8 @@ $("#search-btn").on("click", function (event) {
 
             // get temp data for each day
             temp[i] = response.list[8 * i + 4].main.temp;
+            // Convert from kelvin to farenheit
+            temp[i] = (temp[i] - 273.15) * (9 / 5) + 32 + " °F";
 
             // get humidity data for each day
             humidity[i] = response.list[8 * i + 4].main.humidity;
