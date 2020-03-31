@@ -19,9 +19,11 @@ $("#search-btn").on("click", function (event) {
         url: currentQueryUrl,
         method: "GET"
     }).then(function (response) {
-        // console.log(response);
+        console.log(response);
 
         var currentSky = response.weather[0].id;
+        var currentDate = moment().format('l');
+        
 
 
     });
