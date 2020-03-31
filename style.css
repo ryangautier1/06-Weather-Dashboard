@@ -51,6 +51,19 @@ h1 {
     padding: 15px;
 }
 
+.city-stats div{
+    color: #555;
+    margin: 15px 0;
+}
+
+#current-uv-value {
+    border: solid 1px red;
+    border-radius: 4px;
+    background-color: red;
+    padding: 0 3px;
+    color: white;
+}
+
 #forecast-header {
     overflow: hidden;
     text-align: left;
