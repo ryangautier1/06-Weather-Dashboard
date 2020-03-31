@@ -127,9 +127,10 @@ h1 {
     margin: 0;
     min-width: 125px;
     border-radius: 8px;
+    padding: 5px;
 }
 
-#one {
+[id="1"] {
     margin-right: 5px;    
 }
 
@@ -137,8 +138,24 @@ h1 {
     margin: 0 5px;
 }
 
-#five {
+[id="5"] {
     margin-left: 5px;
+}
+
+.forecast-date {
+    color: white;
+}
+
+.forecast-icon {
+    height: 55px;
+}
+
+.forecast-temp {
+    color: white;
+}
+
+.forecast-humidity {
+    color: white;
 }
 
 .hidden {
@@ -176,6 +193,21 @@ h1 {
         height: 100px;
         margin: 0;
         width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .forecast-date {
+        margin: 5px;
+    }
+
+    .forecast-temp {
+        margin: 0 5px 0 15px;
+    }
+
+    .forecast-humidity {
+        margin: 5px;
     }
     #one {
         margin: 0 0 5px 0;    

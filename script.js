@@ -15,6 +15,8 @@ function clearContents() {
     $("#current-uv").text("");
     $("#current-uv-value").removeClass();
     $("#current-uv-value").text("");
+    $("forecast-header").addClass("hidden");
+    $("city-5-day").addClass("hidden");
 }
 
 // get UV class based on UV index
@@ -152,24 +154,33 @@ $("#search-btn").on("click", function (event) {
 
         // console.log(response);
 
-        for (var i = 0; i < 4; i++) {
-
+        for (var i = 0; i < 5; i++) {
+            var currentClass = "#" + (i+1);
+            $("#forecast-header").removeClass("hidden");
+            $("#city-5-day").removeClass("hidden");
+            
             // get sky data for each day
             // (8*i + 4) will return the data from each day at noon
             sky[i] = response.list[(8 * i) + 4].weather[0].id;
             sky[i] = getSkyIcon(sky[i]);
-
+            $(currentClass).children(".forecast-icon").attr("src","http://openweathermap.org/img/wn/" + sky[i] + "@2x.png");
+        
             // get temp data for each day
             temp[i] = response.list[8 * i + 4].main.temp;
             // Convert from kelvin to farenheit
-            temp[i] = (temp[i] - 273.15) * (9 / 5) + 32 + " °F";
+            temp[i] = (temp[i] - 273.15) * (9 / 5) + 32;
+            temp[i] = Math.round(temp[i]);
+            $(currentClass).children(".forecast-temp").append("Temp: " + temp[i] + " °F");
 
             // get humidity data for each day
-            humidity[i] = response.list[8 * i + 4].main.humidity + "%";
+            humidity[i] = response.list[8 * i + 4].main.humidity;
+            $(currentClass).children(".forecast-humidity").append("Humidity: " + humidity[i] + "%");
+
 
             // get date data for each day
             date[i] = response.list[8 * i + 4].dt_txt;
             date[i] = date[i][5] + date[i][6] + "/" + date[i][8] + date[i][9] + "/" + date[i][0] + date[i][1] + date[i][2] + date[i][3];
+            $(currentClass).children(".forecast-date").append(date[i]);
         }
     });
 
