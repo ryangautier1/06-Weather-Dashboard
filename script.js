@@ -144,7 +144,7 @@ function runSearch(){
         // get current sky id
         var currentSky = response.weather[0].id;
         var iconCode = getSkyIcon(currentSky);
-        $("#current-sky-icon").attr("src", "http://openweathermap.org/img/wn/" + iconCode + "@2x.png");
+        $("#current-sky-icon").attr("src", "https://openweathermap.org/img/wn/" + iconCode + "@2x.png");
 
         // get current date
         var currentDate = moment().format('l');
@@ -210,7 +210,7 @@ function runSearch(){
             // (8*i + 4) will return the data from each day at noon
             sky[i] = response.list[(8 * i) + 4].weather[0].id;
             sky[i] = getSkyIcon(sky[i]);
-            $(currentClass).children(".forecast-icon").attr("src", "http://openweathermap.org/img/wn/" + sky[i] + "@2x.png");
+            $(currentClass).children(".forecast-icon").attr("src", "https://openweathermap.org/img/wn/" + sky[i] + "@2x.png");
 
             // get temp data for each day
             temp[i] = response.list[8 * i + 4].main.temp;
