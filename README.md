@@ -1,6 +1,6 @@
 # 06-Weather-Dashboard
 
-This application uses the [OpenWeather API](https://openweathermap.org/api) to retrieve weather data for cities, and uses `localStorage` to store any persistent data.
+This application uses the [OpenWeather API](https://openweathermap.org/api) to retrieve weather data for cities. The user may type a city located in the United States, and the weather for the day of the search, and a five day forecast, are displayed. `localStorage` is used to store search history data, and the search history is displayed beneath the search bar. The user may click on a search history item to search that city again.
 
 ## User Story
 
@@ -26,17 +26,6 @@ WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 ```
 
-The following image demonstrates the application functionality:
+## Screenshot
 
-![weather dashboard demo](./Assets/06-server-side-apis-homework-demo.png)
-
-## Review
-
-You are required to submit the following for review:
-
-* The URL of the deployed application.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
-
-- - -
-© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+![weather dashboard demo](https://github.com/ryangautier1/06-Weather-Dashboard/blob/master/Screenshot.PNG?raw=true)
