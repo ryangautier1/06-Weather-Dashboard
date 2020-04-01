@@ -171,7 +171,7 @@ function runSearch(){
         lon = response.coord.lon;
 
         // call for UV index
-        uvQueryUrl = "http://api.openweathermap.org/data/2.5/uvi?appid=adb745e5a94210b177a3d627e6b9f105&lat=" + lat + "&lon=" + lon;
+        uvQueryUrl = "https://api.openweathermap.org/data/2.5/uvi?appid=adb745e5a94210b177a3d627e6b9f105&lat=" + lat + "&lon=" + lon;
         $.ajax({
             url: uvQueryUrl,
             method: "GET"
