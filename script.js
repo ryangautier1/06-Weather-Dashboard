@@ -28,7 +28,6 @@ function clearContents() {
     $("#current-uv").text("");
     $("#current-uv-value").removeClass();
     $("#current-uv-value").text("");
-    $("forecast-header").addClass("hidden");
     $("city-5-day").addClass("hidden");
     $(".forecast-date").text("");
     $(".forecast-temp").text("");
@@ -200,10 +199,8 @@ function runSearch(){
         var humidity = new Array();
         var date = new Array();
 
-        $("#forecast-header").removeClass("hidden");
         $("#city-5-day").removeClass("hidden");
-        $("#city-5-day").addClass("flex");
-
+        $("#city-5-day").addClass("inline-block");
 
         for (var i = 0; i < 5; i++) {
             var currentClass = "#" + (i + 1);
