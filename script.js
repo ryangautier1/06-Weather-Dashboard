@@ -6,10 +6,22 @@ var searchHistory = [];
 var lat;
 var lon;
 
+// Get search history and print it to buttons
+searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
+// skip this step if there is no search history
+if (searchHistory) {
+    for (var i = 0; i < searchHistory.length; i++) {
+        var newBtn = $("<button>");
+        newBtn.text(searchHistory[i]);
+        newBtn.addClass("btn btn-primary btn-lg btn-block search-history-btn")
+        $("#search-history").append(newBtn);
+    }
+}
+
 // clear all text
 function clearContents() {
     $("#current-city").text("");
-    $("#current-sky-icon").attr("src","");
+    $("#current-sky-icon").attr("src", "");
     $("#current-temp").text("");
     $("#current-humidity").text("");
     $("#current-wind").text("");
@@ -20,7 +32,7 @@ function clearContents() {
     $("city-5-day").addClass("hidden");
     $(".forecast-date").text("");
     $(".forecast-temp").text("");
-    $(".forecast-icon").attr("src","");
+    $(".forecast-icon").attr("src", "");
     $(".forecast-humidity").text("");
 }
 
@@ -47,7 +59,7 @@ function getUvClass(a) {
 // get weather condition code for icon from https://openweathermap.org/weather-conditions
 function getSkyIcon(b) {
     var a = b.toString();
-    if (a[0] == "2"){
+    if (a[0] == "2") {
         return "11d";
     }
     else if (a[0] == "3") {
@@ -87,15 +99,25 @@ $("#search-btn").on("click", function (event) {
     clearContents();
     cityName = $("#city-input").val();
 
-    // store cityName in search history
-    // searchHistory = localStorage.getItem("searchHistory", JSON.stringify(searchHistory));
-    // if (searchHistory != []){
-
-    // }
-    searchHistory.unshift(cityName);
-    console.log(searchHistory);
-    // localStorage.setItem()
-    // var newBtn = $("<button>").text(cityName);
+    // store cityName in search history if it's not already there
+    if (!searchHistory) {
+        searchHistory = [cityName];
+        localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+        // prepend new search hitory button to screen
+        var newBtn = $("<button>");
+        newBtn.text(searchHistory[0]);
+        newBtn.addClass("btn btn-primary btn-lg btn-block search-history-btn")
+        $("#search-history").prepend(newBtn);
+    }
+    else if (!searchHistory.includes(cityName)) {
+        searchHistory.unshift(cityName);
+        localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+        // prepend new search hitory button to screen
+        var newBtn = $("<button>");
+        newBtn.text(searchHistory[0]);
+        newBtn.addClass("btn btn-primary btn-lg btn-block search-history-btn")
+        $("#search-history").prepend(newBtn);
+    }
 
 
     // query url for current weather
@@ -113,8 +135,8 @@ $("#search-btn").on("click", function (event) {
         // get current sky id
         var currentSky = response.weather[0].id;
         var iconCode = getSkyIcon(currentSky);
-        $("#current-sky-icon").attr("src","http://openweathermap.org/img/wn/" + iconCode + "@2x.png");
-    
+        $("#current-sky-icon").attr("src", "http://openweathermap.org/img/wn/" + iconCode + "@2x.png");
+
         // get current date
         var currentDate = moment().format('l');
         // add current date to heading of current city stats
@@ -171,16 +193,16 @@ $("#search-btn").on("click", function (event) {
         // console.log(response);
 
         for (var i = 0; i < 5; i++) {
-            var currentClass = "#" + (i+1);
+            var currentClass = "#" + (i + 1);
             $("#forecast-header").removeClass("hidden");
             $("#city-5-day").removeClass("hidden");
-            
+
             // get sky data for each day
             // (8*i + 4) will return the data from each day at noon
             sky[i] = response.list[(8 * i) + 4].weather[0].id;
             sky[i] = getSkyIcon(sky[i]);
-            $(currentClass).children(".forecast-icon").attr("src","http://openweathermap.org/img/wn/" + sky[i] + "@2x.png");
-        
+            $(currentClass).children(".forecast-icon").attr("src", "http://openweathermap.org/img/wn/" + sky[i] + "@2x.png");
+
             // get temp data for each day
             temp[i] = response.list[8 * i + 4].main.temp;
             // Convert from kelvin to farenheit

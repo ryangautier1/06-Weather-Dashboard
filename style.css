@@ -30,16 +30,22 @@ h1 {
     padding: 10px;
 }
 
-.btn {
+#search-btn {
     color: #fff;
-    background-color: #f6ae2d;
-    border-color: #f6ae2d;
+    background-color: #357266;
+    border-color: #357266;
 }
 
-.btn-outline-secondary:hover {
+#search-btn:hover {
     color: #fff;
-    background-color: #f26419;
-    border-color: #f26419;
+    background-color: #0E3B43;
+    border-color: #0E3B43;
+}
+
+.search-history-btn {
+    color: #fff;
+    background-color: #ACBEA3;
+    border-color: #ACBEA3;
 }
 
 .city-stats {
