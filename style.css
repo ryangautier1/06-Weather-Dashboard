@@ -9,7 +9,7 @@ body {
 
 header {
     width: 100%;
-    background-color: #33658a;
+    background-image: linear-gradient(to right, #33658a, #274e6b);
     color: #fff;
     padding: 7px;
     text-align: center;
@@ -44,8 +44,19 @@ h1 {
 
 .search-history-btn {
     color: #fff;
-    background-color: #ACBEA3;
-    border-color: #ACBEA3;
+    background-image: linear-gradient(to right, #574D68, #473f53);   
+}
+
+.search-history-btn:hover {
+    color: #fff;
+    background-color: #0E3B43;
+    border-color: #0E3B43;
+}
+
+.search-history-btn:active {
+    color: #fff;
+    background-color: #0E3B43;
+    border-color: #0E3B43;
 }
 
 .city-stats {
@@ -124,28 +135,18 @@ h1 {
 #city-5-day {
     min-height: 190px;
     margin: 10px;
+    width: 665px;
+    justify-content: space-between;
 }
 
 .day {
-    background-color: #758e4f;
+    background-image: linear-gradient(#357266, #2d6157);
     height: 190px;
     float: left;
     margin: 0;
     min-width: 125px;
     border-radius: 8px;
     padding: 5px;
-}
-
-[id="1"] {
-    margin-right: 5px;    
-}
-
-.mid {
-    margin: 0 5px;
-}
-
-[id="5"] {
-    margin-left: 5px;
 }
 
 .forecast-date {
@@ -194,6 +195,9 @@ h1 {
     }
     #city-5-day {
         flex-direction: column;
+        height: 540px;
+        width: auto;
+        justify-content: space-between;
     }
     .day {
         height: 100px;
@@ -215,18 +219,18 @@ h1 {
     .forecast-humidity {
         margin: 5px;
     }
-    #one {
-        margin: 0 0 5px 0;    
+    .hidden {
+        display: none;
+    }
+    [id="1"] {
+        margin: 0;    
     }
     
     .mid {
-        margin: 5px 0;
+        margin: 0;
     }
     
-    #five {
-        margin: 5px 0 0 0;
-    }
-    .hidden {
-        display: none;
+    [id="5"] {
+        margin: 0;
     }
 }
